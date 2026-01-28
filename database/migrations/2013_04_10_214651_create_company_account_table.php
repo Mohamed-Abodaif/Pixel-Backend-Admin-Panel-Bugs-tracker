@@ -1,0 +1,40 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('company_account', function (Blueprint $table) {
+            $table->id(); 
+            $table->string('name')->unique();
+            $table->string('cr_no')->nullable()->unique();
+            $table->string('mobile' , 20)->index();
+            $table->string("email")->index();
+            $table->string('sector');
+            $table->string('logo')->nullable();
+            $table->foreignId("country_id")->constrained("countries")->cascadeOnUpdate()->restrictOnDelete();
+            $table->string('address')->nullable(); 
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate(); 
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('company_account');
+    }
+};
