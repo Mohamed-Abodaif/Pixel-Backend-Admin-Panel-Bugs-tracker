@@ -10,13 +10,7 @@
     'tenant-company-resources-configuring' => 'PixelApp\\Routes\\RouteRegistrarTypes\\CompanyAccountRouteRegistrars\\TenantCompanyAccountRouteRegistrars\\TenantCompanyResourcesConfiguringAPIRoutesRegistrar',
     'dropdown-list' => 
     array (
-      'main-and-sub-areas' => 'PixelApp\\Routes\\RouteRegistrarTypes\\SystemConfigurationRouteRegistrars\\DropdownListRouteRegistrars\\MainAndSubAreasRouteRegistrar',
-      'geographical-areas' => 'PixelApp\\Routes\\RouteRegistrarTypes\\SystemConfigurationRouteRegistrars\\DropdownListRouteRegistrars\\GeographicalAreasRouteRegistrar',
-      'branches' => 'PixelApp\\Routes\\RouteRegistrarTypes\\SystemConfigurationRouteRegistrars\\DropdownListRouteRegistrars\\BranchesRouteRegistrar',
-      'cities' => 'PixelApp\\Routes\\RouteRegistrarTypes\\SystemConfigurationRouteRegistrars\\DropdownListRouteRegistrars\\CitiesRouteRegistrar',
       'countries' => 'PixelApp\\Routes\\RouteRegistrarTypes\\SystemConfigurationRouteRegistrars\\DropdownListRouteRegistrars\\CountriesRouteRegistrar',
-      'currencies' => 'PixelApp\\Routes\\RouteRegistrarTypes\\SystemConfigurationRouteRegistrars\\DropdownListRouteRegistrars\\CurrenciesRouteRegistrar',
-      'departments' => 'PixelApp\\Routes\\RouteRegistrarTypes\\SystemConfigurationRouteRegistrars\\DropdownListRouteRegistrars\\DepartmentRouteRegistrar',
     ),
     'packages' => 'PixelApp\\Routes\\RouteRegistrarTypes\\SystemConfigurationRouteRegistrars\\PackagesRouteRegistrar',
     'roles-permissions' => 'PixelApp\\Routes\\RouteRegistrarTypes\\SystemConfigurationRouteRegistrars\\RolesAndPermissionsRouteRegistrar',

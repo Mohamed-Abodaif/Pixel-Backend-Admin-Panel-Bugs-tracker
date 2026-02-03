@@ -75,6 +75,9 @@ $superAdminPermissions = array_merge($permissions, [
                     
                     // Roles and Permissions
                     "read_sc-roles-and-permissions",
+                    "create_sc-roles-and-permissions",
+                    "edit_sc-roles-and-permissions",
+                    "delete_sc-roles-and-permissions",
                     // ========================================
                     // USER MANAGEMENT MODULE (UMM)
                     // ========================================

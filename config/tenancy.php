@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Database\Seeders\TenantDatabaseConfiguringSeeder\TenantDatabaseConfiguringSeeder;
 use PixelApp\CustomLibs\Tenancy\Bootstrappers\FilesystemTenancyCustomBootstrapper;
 use PixelApp\CustomLibs\Tenancy\Bootstrappers\QueueTenancyCustomBootstrapper;
 use PixelApp\Models\CompanyModule\TenantCompany;
@@ -19,12 +20,11 @@ return [
      *
      * Only relevant if you're using the domain or subdomain identification middleware.
      */
-    'central_domains' => [
-        '127.0.0.1',
-        'adminapi.stg.companies-management.com',
+    'central_domains' => array_unique([
         'localhost',
-
-    ],
+        env('BACKEND_CENTRAL_DOMAIN' , '127.0.0.1'),
+        env('TENANT_SUBDOMAIN_IDENTIFICATION_HOST' , '127.0.0.1'),
+    ]),
 
     /**
      * Tenancy bootstrappers are executed when tenancy is initialized.
@@ -56,7 +56,7 @@ return [
          * Tenant database names are created like this:
          * prefix + tenant_id + suffix.
          */
-        'prefix' => 'erp_tenant_no_',
+        'prefix' => 'tenant_no_',
         'suffix' => '_database',
 
         /**
@@ -117,11 +117,11 @@ return [
          * See https://tenancyforlaravel.com/docs/v3/tenancy-bootstrappers/#filesystem-tenancy-boostrapper
          */
         'root_override' => [
-            // Disks whose roots should be overriden after storage_path() is suffixed.
+            // Disks whose roots should be overridden after storage_path() is suffixed.
             /** (UNCOMMENT THE LINES BELLOW IF YOU ONLY WANT TO GIVE EACH TENANT SEPARATED DISKS , BUT IN OUR CASE : EACH DISK WILL HAVE EVERY TENANT FILES THOSE SHOULD BE UPLOADED INTO THAT DISK) . */
-            //             'local' => '%storage_path%/tenant_suffix_%tenant%/app/',
-            //             'public' => '%storage_path%/tenant_suffix_%tenant%/app/public/',
-            //             'front_separated' => '%storage_path%/tenant_suffix_%tenant%/app/public/',
+//             'local' => '%storage_path%/tenant_suffix_%tenant%/app/',
+//             'public' => '%storage_path%/tenant_suffix_%tenant%/app/public/',
+//             'front_separated' => '%storage_path%/tenant_suffix_%tenant%/app/public/',
         ],
 
         /**
@@ -192,7 +192,7 @@ return [
      */
     'migration_parameters' => [
         '--force' => true, // This needs to be true to run migrations in production.
-        '--path' => config('database-paths',database_path('migrations/tenant/PixelStandartMigrations')),
+        '--path' => config('migration-sub-folder-paths',database_path('migrations/tenant')),
         '--realpath' => true,
     ],
 
@@ -200,7 +200,7 @@ return [
      * Parameters used by the tenants:seed command.
      */
     'seeder_parameters' => [
-        '--class' => 'TenantDatabaseConfiguringSeeder\TenantDatabaseConfiguringSeeder', // root seeder class
-        '--force' => true,
+        '--class' => TenantDatabaseConfiguringSeeder::class, // root seeder class
+         // '--force' => true, // This needs to be true to seed tenant databases in production
     ],
 ];
