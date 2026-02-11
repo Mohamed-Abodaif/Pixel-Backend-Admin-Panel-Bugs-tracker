@@ -56,7 +56,7 @@ return [
          * Tenant database names are created like this:
          * prefix + tenant_id + suffix.
          */
-        'prefix' => 'tenant_no_',
+        'prefix' => 'bugs_tracker_tenant_no_',
         'suffix' => '_database',
 
         /**
